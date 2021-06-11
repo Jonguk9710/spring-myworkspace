@@ -82,25 +82,18 @@ public class ContactController {
 	@PutMapping(value = "/contacts/{id}")
 	public Contact modifyTodo(@PathVariable int id, @RequestBody Contact contact, HttpServletResponse res) {
 
-		if (contact.getName() == null || contact.getName().equals("")) {
-			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			return null;
-		}
-		if (contact.getPhone() == null || contact.getPhone().equals("")) {
-			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			return null;
-		}
-		if (contact.getEmail() == null || contact.getEmail().equals("")) {
-			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-			return null;
-		}
-
 		Optional<Contact> findedcontact = repo.findById(id);
 
 		if (findedcontact.isEmpty()) {
 			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 		}
+
+		if (contact.getName() == null || contact.getName().equals("")) {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return null;
+		}
+
 		Contact toUpdateContact = findedcontact.get();
 		toUpdateContact.setName(contact.getName());
 		toUpdateContact.setPhone(contact.getPhone());

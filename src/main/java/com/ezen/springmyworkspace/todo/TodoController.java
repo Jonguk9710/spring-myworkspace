@@ -39,6 +39,13 @@ public class TodoController {
 		return repo.findAll(PageRequest.of(page, size, Sort.by("id").descending()));
 	}
 
+	@GetMapping(value = "/todos/search")
+	public Page<Todo> getTodoLiistSearch(@RequestParam int page, @RequestParam int size, @RequestParam String keyword) {
+		// return repo.findByMemo(PageRequest.of(page, size,
+		// Sort.by("id").descending()), keyword);
+		return repo.findByMemoContaining(PageRequest.of(page, size, Sort.by("id").descending()), keyword);
+	}
+
 	@PostMapping(value = "/todos")
 	public Todo addTodo(@RequestBody Todo todo, HttpServletResponse res) {
 		if (todo.getMemo() == null || todo.getMemo().equals("")) {
