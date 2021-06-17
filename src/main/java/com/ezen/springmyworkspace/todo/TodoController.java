@@ -40,7 +40,7 @@ public class TodoController {
 	}
 
 	@GetMapping(value = "/todos/search")
-	public Page<Todo> getTodoLiistSearch(@RequestParam int page, @RequestParam int size, @RequestParam String keyword) {
+	public Page<Todo> getTodoListSearch(@RequestParam int page, @RequestParam int size, @RequestParam String keyword) {
 		// return repo.findByMemo(PageRequest.of(page, size,
 		// Sort.by("id").descending()), keyword);
 		return repo.findByMemoContaining(PageRequest.of(page, size, Sort.by("id").descending()), keyword);
