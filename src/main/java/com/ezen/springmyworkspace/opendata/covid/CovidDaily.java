@@ -18,13 +18,13 @@ public class CovidDaily {
 	private String gubun;
 
 	private String deathCnt;
-	private String defCnt;
+	private String incDec;
 
 	public CovidDaily(CovidDailyResponse.Item item) {
 		this.stdDay = item.getStdDay();
 		this.gubun = item.getGubun();
 		this.deathCnt = item.getDeathCnt();
-		this.defCnt = item.getDefCnt();
+		this.incDec = item.getIncDec();
 	}
 
 }

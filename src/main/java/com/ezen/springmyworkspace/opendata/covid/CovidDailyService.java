@@ -55,7 +55,8 @@ public class CovidDailyService {
 		System.out.println(response);
 
 		for (CovidDailyResponse.Item item : response.getResponse().getBody().getItems().getItem()) {
-			repo.save(new CovidDaily(item));
+			if (!item.getGubun().equals("합계") && !item.getGubun().equals("검역"))
+				repo.save(new CovidDaily(item));
 		}
 
 	}

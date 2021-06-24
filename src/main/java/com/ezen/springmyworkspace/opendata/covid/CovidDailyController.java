@@ -19,10 +19,10 @@ public class CovidDailyController {
 		this.repo = repo;
 	}
 
-	@GetMapping(value = "/opendata/covid/daily", produces = "application/json; charset=utf8")
+	@GetMapping(value = "/opendata/covid/daily")
 	public List<CovidDaily> getListByDataType() {
-		Order[] orders = { new Order(Sort.Direction.DESC, "stdDay"), new Order(Sort.Direction.ASC, "gubun") };
+		Order[] orders = { new Order(Sort.Direction.DESC, "stdDay") };
 
-		return repo.findAll(PageRequest.of(0, 19, Sort.by(orders))).toList();
+		return repo.findAll(PageRequest.of(0, 133, Sort.by(orders))).toList();
 	}
 }

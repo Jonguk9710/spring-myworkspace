@@ -28,7 +28,7 @@ public class CovidDailyResponse {
 		private String stdDay;
 		private String gubun;
 		private String deathCnt;
-		private String defCnt;
+		private String incDec;
 	}
 
 }
