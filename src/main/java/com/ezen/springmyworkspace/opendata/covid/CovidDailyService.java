@@ -8,6 +8,7 @@ import java.util.Date;
 import org.json.JSONObject;
 import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +23,10 @@ public class CovidDailyService {
 		this.repo = repo;
 	}
 
+	@CacheEvict(cacheNames = "covid-daily", key = "0")
 	@SuppressWarnings("deprecation")
-//	@Scheduled(cron = " 0 00 00 * * *")
-	@Scheduled(fixedRate = 1000 * 60 * 30)
+	@Scheduled(cron = " 0 00 00 * * *")
+//	@Scheduled(fixedRate = 1000 * 60 * 30)
 	public void requestCovidDailyData() throws IOException {
 		System.out.println(new Date().toLocaleString() + "--½ÇÇà--");
 		getCovidDailyData();
